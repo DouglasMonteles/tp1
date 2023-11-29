@@ -51,6 +51,37 @@ Rastreamento de lotes e validade:
 
 ## ➿ Execução do Projeto
 
+- Para executar a aplicação springboot
+  
+  ```
+  # windows
+  .\mvnw.cmd spring-boot:run
+
+  #linux
+  ./mvnw spring-boot:run
+  ```
+
+- Para gerar a build do projeto (também executa os testes)
+
+  ```
+  # windows
+  .\mvnw.cmd clean install
+
+  #linux
+  ./mvnw clean install
+  ```
+
+- Para executar os testes
+
+  ```
+  # windows
+  .\mvnw.cmd test
+
+  #linux
+  ./mvnw test
+  ```
+
+
 | Aluno | Funcionalidade                                                      |
 | --------- | ---------------------------------------------------------- |
 | Douglas Monteles	| Alerta de Estoque Baixo  |
