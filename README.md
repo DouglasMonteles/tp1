@@ -14,8 +14,8 @@
 
 ## Projeto
 
-- Visão Geral
-- TDD + Resultados
+- [Visão Geral](principal/visaogeral.md)
+- [TDD + Resultados](principal/tdd.md)
 
 ## ➿ Execução do Projeto
 
