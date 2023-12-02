@@ -5,15 +5,13 @@ public class Produto {
     private Integer quantidadeDisponivel;
     private Integer limiteMinimo;
 
-    public Produto() {}
+    private Fornecedor fornecedor;
 
-    public Produto(Integer quantidadeDisponivel, Integer limiteMinimo) {
-        this.quantidadeDisponivel = quantidadeDisponivel;
-        this.limiteMinimo = limiteMinimo;
-    }
+    public Produto() {}
 
     public boolean alertaEstoqueBaixo() {
         if (quantidadeDisponivel <= limiteMinimo) {
+            System.out.println(this);
             return true;
         }
 
@@ -36,4 +34,20 @@ public class Produto {
         this.limiteMinimo = limiteMinimo;
     }
 
+    public Fornecedor getFornecedor() {
+        return fornecedor;
+    }
+
+    public void setFornecedor(Fornecedor fornecedor) {
+        this.fornecedor = fornecedor;
+    }
+
+    @Override
+    public String toString() {
+        return "Produto{" +
+                "quantidadeDisponivel=" + quantidadeDisponivel +
+                ", limiteMinimo=" + limiteMinimo +
+                ", fornecedor=" + fornecedor +
+                '}';
+    }
 }
