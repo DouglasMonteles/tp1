@@ -1,5 +1,7 @@
 package com.fga.tppe.tp1.models;
 
+import com.fga.tppe.tp1.exceptions.EstoqueNegativoException;
+
 public class Produto {
 
     private Integer quantidadeDisponivel;
@@ -16,6 +18,17 @@ public class Produto {
         }
 
         return false;
+    }
+
+    public Produto removerProdutoDoEstoque(Integer quantidadeDesejada) {
+        this.quantidadeDisponivel -= quantidadeDesejada;
+
+        if (this.quantidadeDisponivel < 0) {
+            this.quantidadeDisponivel = 0;
+            throw new EstoqueNegativoException();
+        }
+
+        return this;
     }
 
     public Integer getQuantidadeDisponivel() {
