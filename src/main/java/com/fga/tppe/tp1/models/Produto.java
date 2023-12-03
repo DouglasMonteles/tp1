@@ -67,22 +67,45 @@ public class Produto {
     // Testes Gestao de transacoes
 
     public void receberMercadoria(int quantidadeRecebida) {
-        // Código do método (Vazio na fase 1 do TDD e testes falhando)
+        if (quantidadeRecebida < 0) {
+            throw new IllegalArgumentException("Quantidade recebida não pode ser negativa.");
+        }
+
+        this.quantidadeDisponivel += quantidadeRecebida;
     }
 
     public void venderMercadoria(int quantidadeParaVenda) {
-        // Código do método (Vazio na fase 1 do TDD e testes falhando)
+        if (quantidadeParaVenda < 0) {
+            throw new IllegalArgumentException("Quantidade para venda não pode ser negativa.");
+        }
+
+        if (this.quantidadeDisponivel < quantidadeParaVenda) {
+            throw new IllegalArgumentException("Quantidade para venda excede o estoque disponível.");
+        }
+
+        this.quantidadeDisponivel -= quantidadeParaVenda;
     }
 
     public void devolverMercadoria(int quantidadeParaDevolver) {
-        // Código do método (Vazio na fase 1 do TDD e testes falhando)
+        if (quantidadeParaDevolver < 0) {
+            throw new IllegalArgumentException("Quantidade para devolução não pode ser negativa.");
+        }
+
+        this.quantidadeDisponivel += quantidadeParaDevolver;
     }
 
     public void transferirMercadoria(int quantidadeParaTransferir) {
-        // Código do método (Vazio na fase 1 do TDD e testes falhando)
+        if (quantidadeParaTransferir < 0) {
+            throw new IllegalArgumentException("Quantidade para transferência não pode ser negativa.");
+        }
+
+        if (this.quantidadeDisponivel < quantidadeParaTransferir) {
+            throw new IllegalArgumentException("Quantidade para transferência excede o estoque disponível.");
+        }
+
+        this.quantidadeDisponivel -= quantidadeParaTransferir;
     }
 
     public void ajustarEstoque(int quantidadeTotalFinal) {
-        // Código do método (Vazio na fase 1 do TDD e testes falhando)
-    }
+        this.quantidadeDisponivel = quantidadeTotalFinal;    }
 }
