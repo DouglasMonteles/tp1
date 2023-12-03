@@ -1,7 +1,5 @@
  ##  💻 Visão Geral
 
- <p> Descrição do projeto </p>
-
 Seja o cenário descrito a seguir:
 
 Um sistema de estoque e inventário é uma aplicação de software projetada para ajudar as empresas a gerenciar eficientemente o controle de estoque e o acompanhamento de mercadorias. Esses sistemas são essenciais para empresas que mantêm um inventário de produtos físicos, sejam eles materiais para produção, produtos acabados para venda ou componentes diversos.
@@ -34,6 +32,10 @@ Rastreamento de lotes e validade:
 - Garantir que o sistema informe corretamente a quantidade total de itens para um determinado produto;
 - Garantir que o sistema informe corretamente a quantidade total de itens de cada lote para um determinado produto;
 - Garantir que o sistema emita um alerta de lotes próximos à data de validade e atualize o preço de venda daqueles produtos em -20%.
+
+### Diagrama de Classes
+
+![Imagem do WhatsApp de 2023-12-03 à(s) 18 53 38_019c3b95](https://github.com/DouglasMonteles/tp1/assets/54143767/46205e3b-3fac-46ee-8c8c-f03f1b0e14a4)
 
 
 | Aluno | Funcionalidade                                                      |
