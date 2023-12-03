@@ -87,7 +87,8 @@ public class Produto {
 
     private void validarEntradas(String nome, String codigoBarras, Double precoCompra, Double precoVenda, Integer quantidadeEstoque)
             throws DescricaoEmBrancoException, ValorInvalidoException {
-        if (nome == null || codigoBarras == null || nome.isEmpty() || codigoBarras.isEmpty() || precoCompra == null || precoVenda == null || quantidadeEstoque == null){
+        if (nome == null || codigoBarras == null || nome.isEmpty() || codigoBarras.isEmpty() ||
+         precoCompra == null || precoVenda == null || quantidadeEstoque == null){
             throw new DescricaoEmBrancoException("Os campos não pode estar em branco");
         }
         if (precoCompra <= 0 || precoVenda <= 0 || quantidadeEstoque <= 0){
