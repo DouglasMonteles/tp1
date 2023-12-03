@@ -63,4 +63,37 @@ public class Produto {
                 ", fornecedor=" + fornecedor +
                 '}';
     }
+
+    // Testes Gestao de transacoes
+
+    public void receberMercadoria(int quantidadeRecebida) {
+        validarQuantidadeNegativa(quantidadeRecebida);
+        this.quantidadeDisponivel += quantidadeRecebida;
+    }
+
+    public void venderMercadoria(int quantidadeParaVenda) {
+        validarQuantidadeNegativa(quantidadeParaVenda);
+        this.quantidadeDisponivel -= quantidadeParaVenda;
+    }
+
+    public void devolverMercadoria(int quantidadeParaDevolver) {
+        validarQuantidadeNegativa(quantidadeParaDevolver);
+        this.quantidadeDisponivel += quantidadeParaDevolver;
+    }
+
+    public void transferirMercadoria(int quantidadeParaTransferir) {
+        validarQuantidadeNegativa(quantidadeParaTransferir);
+        this.quantidadeDisponivel -= quantidadeParaTransferir;
+    }
+
+    public void ajustarEstoque(int quantidadeTotalFinal) {
+        this.quantidadeDisponivel = quantidadeTotalFinal;
+    }
+
+    // Método para validar se a quantidade fornecida para a transacao eh negativa e lancar a excecao nesses casos
+    private void validarQuantidadeNegativa(int quantidade) {
+        if (quantidade < 0) {
+            throw new IllegalArgumentException("Quantidade não pode ser negativa.");
+        }
+    }
 }
