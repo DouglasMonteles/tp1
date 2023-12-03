@@ -6,9 +6,8 @@ public class Produto {
 
     private Integer quantidadeDisponivel;
     private Integer limiteMinimo;
-
     private Fornecedor fornecedor;
-
+    private Lote lote;
     public Produto() {}
 
     public boolean alertaEstoqueBaixo() {
@@ -53,6 +52,12 @@ public class Produto {
 
     public void setFornecedor(Fornecedor fornecedor) {
         this.fornecedor = fornecedor;
+    }
+    public Lote getLote() {
+        return lote;
+    }
+    public void setLote(Lote lote) {
+        this.lote = lote;
     }
 
     @Override
