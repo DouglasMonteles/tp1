@@ -54,10 +54,18 @@ public class TestesGestaoTransacoes {
     @Test
     public void testAjusteEstoqueNulo() {
         int QuantidadeTotalFinal = 0;
+        produto.ajustarEstoque(QuantidadeTotalFinal);
 
-        assertThrows(IllegalArgumentException.class, () -> {
-            produto.ajustarEstoque(QuantidadeTotalFinal);
-        });
+        int quantidadeEsperada = 0;
+        assertEquals(quantidadeEsperada, produto.getQuantidadeDisponivel()); // Não deveria lançar exceção e o valor deveria ser validado corretamente, como atualizado
     }
 
+    @Test
+    public void testAjusteEstoqueNegativo() {
+        int QuantidadeTotalFinal = -450;
+        produto.ajustarEstoque(QuantidadeTotalFinal);
+
+        int quantidadeEsperada = -450;
+        assertEquals(quantidadeEsperada, produto.getQuantidadeDisponivel()); // Não deveria lançar exceção e o valor deveria ser validado corretamente, como atualizado
+    }
 }
