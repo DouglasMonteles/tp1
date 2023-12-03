@@ -10,6 +10,8 @@ public class Produto {
 
     private Fornecedor fornecedor;
 
+    private String localizacao;
+
     public Produto() {}
 
     public boolean alertaEstoqueBaixo() {
@@ -54,6 +56,14 @@ public class Produto {
 
     public void setFornecedor(Fornecedor fornecedor) {
         this.fornecedor = fornecedor;
+    }
+
+    public String getLocalizacao() {
+        return localizacao;
+    }
+
+    public void setLocalizacao(String localizacao) {
+        this.localizacao = localizacao;
     }
 
     @Override
