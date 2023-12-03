@@ -49,8 +49,6 @@
   ./mvnw test
   ```
 
-### Resultados: 
-
 ### Linguagens: 
 
 <div style="display: inline_block">
