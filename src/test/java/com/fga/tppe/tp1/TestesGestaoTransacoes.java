@@ -27,7 +27,6 @@ public class TestesGestaoTransacoes {
     @Test
     public void testVendaMercadoriaNegativo() {
         int quantidadeParaVenda = -19;
-        produto.venderMercadoria(quantidadeParaVenda);
 
         assertThrows(IllegalArgumentException.class, () -> {
             produto.venderMercadoria(quantidadeParaVenda);
@@ -37,7 +36,6 @@ public class TestesGestaoTransacoes {
     @Test
     public void testDevolucaoNegativo() {
         int quantidadeParaDevolver = -5;
-        produto.devolverMercadoria(quantidadeParaDevolver);
 
         assertThrows(IllegalArgumentException.class, () -> {
             produto.devolverMercadoria(quantidadeParaDevolver);
@@ -47,17 +45,15 @@ public class TestesGestaoTransacoes {
     @Test
     public void testTransferenciaNegativo() {
         int quantidadeParaTransferir = -92;
-        produto.devolverMercadoria(quantidadeParaTransferir);
 
         assertThrows(IllegalArgumentException.class, () -> {
-            produto.receberMercadoria(quantidadeParaTransferir);
+            produto.transferirMercadoria(quantidadeParaTransferir);
         });
     }
 
     @Test
     public void testAjusteEstoqueNulo() {
         int QuantidadeTotalFinal = 0;
-        produto.ajustarEstoque(QuantidadeTotalFinal);
 
         assertThrows(IllegalArgumentException.class, () -> {
             produto.ajustarEstoque(QuantidadeTotalFinal);
