@@ -17,21 +17,6 @@ todos os testes continuam a passar.
 
 ![image](https://github.com/DouglasMonteles/tp1/assets/54143767/c641f4ad-c970-4173-b58c-1beed9555b60)
 
-## Resultados
-
-### Ciclos do Projeto
-
-#### Douglas Monteles
-
-#### Eric Chagas
-
-#### Erik Levy
-
-#### Giulia Alcantara
-
-#### Ingrid Carvalho
-
-
 ## Referências
 
 https://www.treinaweb.com.br/blog/afinal-o-que-e-tdd
