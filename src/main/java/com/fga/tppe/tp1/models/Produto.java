@@ -1,6 +1,7 @@
 package com.fga.tppe.tp1.models;
 
 import com.fga.tppe.tp1.exceptions.EstoqueNegativoException;
+import com.fga.tppe.tp1.exceptions.ValorInvalidoException;
 
 public class Produto {
 
@@ -93,7 +94,7 @@ public class Produto {
     // Método para validar se a quantidade fornecida para a transacao eh negativa e lancar a excecao nesses casos
     private void validarQuantidadeNegativa(int quantidade) {
         if (quantidade < 0) {
-            throw new IllegalArgumentException("Quantidade não pode ser negativa.");
+            throw new ValorInvalidoException("Quantidade não pode ser negativa.");
         }
     }
 }
