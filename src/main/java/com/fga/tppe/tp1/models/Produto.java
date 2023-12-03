@@ -63,4 +63,26 @@ public class Produto {
                 ", fornecedor=" + fornecedor +
                 '}';
     }
+
+    // Testes Gestao de transacoes
+
+    public void receberMercadoria(int quantidadeRecebida) {
+        // Código do método (Vazio na fase 1 do TDD e testes falhando)
+    }
+
+    public void venderMercadoria(int quantidadeParaVenda) {
+        // Código do método (Vazio na fase 1 do TDD e testes falhando)
+    }
+
+    public void devolverMercadoria(int quantidadeParaDevolver) {
+        // Código do método (Vazio na fase 1 do TDD e testes falhando)
+    }
+
+    public void transferirMercadoria(int quantidadeParaTransferir) {
+        // Código do método (Vazio na fase 1 do TDD e testes falhando)
+    }
+
+    public void ajustarEstoque(int quantidadeTotalFinal) {
+        // Código do método (Vazio na fase 1 do TDD e testes falhando)
+    }
 }
