@@ -67,45 +67,33 @@ public class Produto {
     // Testes Gestao de transacoes
 
     public void receberMercadoria(int quantidadeRecebida) {
-        if (quantidadeRecebida < 0) {
-            throw new IllegalArgumentException("Quantidade recebida não pode ser negativa.");
-        }
-
+        validarQuantidadeNegativa(quantidadeRecebida);
         this.quantidadeDisponivel += quantidadeRecebida;
     }
 
     public void venderMercadoria(int quantidadeParaVenda) {
-        if (quantidadeParaVenda < 0) {
-            throw new IllegalArgumentException("Quantidade para venda não pode ser negativa.");
-        }
-
-        if (this.quantidadeDisponivel < quantidadeParaVenda) {
-            throw new IllegalArgumentException("Quantidade para venda excede o estoque disponível.");
-        }
-
+        validarQuantidadeNegativa(quantidadeParaVenda);
         this.quantidadeDisponivel -= quantidadeParaVenda;
     }
 
     public void devolverMercadoria(int quantidadeParaDevolver) {
-        if (quantidadeParaDevolver < 0) {
-            throw new IllegalArgumentException("Quantidade para devolução não pode ser negativa.");
-        }
-
+        validarQuantidadeNegativa(quantidadeParaDevolver);
         this.quantidadeDisponivel += quantidadeParaDevolver;
     }
 
     public void transferirMercadoria(int quantidadeParaTransferir) {
-        if (quantidadeParaTransferir < 0) {
-            throw new IllegalArgumentException("Quantidade para transferência não pode ser negativa.");
-        }
-
-        if (this.quantidadeDisponivel < quantidadeParaTransferir) {
-            throw new IllegalArgumentException("Quantidade para transferência excede o estoque disponível.");
-        }
-
+        validarQuantidadeNegativa(quantidadeParaTransferir);
         this.quantidadeDisponivel -= quantidadeParaTransferir;
     }
 
     public void ajustarEstoque(int quantidadeTotalFinal) {
-        this.quantidadeDisponivel = quantidadeTotalFinal;    }
+        this.quantidadeDisponivel = quantidadeTotalFinal;
+    }
+
+    // Método para validar se a quantidade fornecida para a transacao eh negativa e lancar a excecao nesses casos
+    private void validarQuantidadeNegativa(int quantidade) {
+        if (quantidade < 0) {
+            throw new IllegalArgumentException("Quantidade não pode ser negativa.");
+        }
+    }
 }
