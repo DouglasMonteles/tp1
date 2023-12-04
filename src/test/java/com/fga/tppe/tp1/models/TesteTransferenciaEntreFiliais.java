@@ -3,8 +3,7 @@ package com.fga.tppe.tp1.models;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TesteTransferenciaEntreFiliais {
 
@@ -30,6 +29,15 @@ public class TesteTransferenciaEntreFiliais {
 
         assertTrue(this.transferencia.registrarTransferencia());
         assertEquals("Rio de Janeiro", produto.getLocalizacao());
+    }
+
+    @Test
+    public void testnaoTranfereEntreFiliaisQuandoOrigemEoDestinoSaoIguais() {
+        this.transferencia.setOrigem(produto.getLocalizacao());
+        this.transferencia.setDestino(produto.getLocalizacao());
+
+        assertFalse(this.transferencia.registrarTransferencia());
+        assertEquals("São Paulo", produto.getLocalizacao());
     }
 
 }
