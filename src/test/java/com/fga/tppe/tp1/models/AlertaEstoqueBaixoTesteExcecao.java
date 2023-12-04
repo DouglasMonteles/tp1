@@ -10,6 +10,8 @@ import org.junit.experimental.categories.Category;
 @Category(TestesExcecoes.class)
 public class AlertaEstoqueBaixoTesteExcecao {
 
+
+
     private Produto produto;
 
     @Before

@@ -1,8 +1,11 @@
 package com.fga.tppe.tp1.models;
 
-import com.fga.tppe.tp1.exceptions.EstoqueNegativoException;
+import java.math.BigDecimal;
+
 import com.fga.tppe.tp1.exceptions.DescricaoEmBrancoException;
+import com.fga.tppe.tp1.exceptions.EstoqueNegativoException;
 import com.fga.tppe.tp1.exceptions.ValorInvalidoException;
+
 public class Produto {
 
     private Integer quantidadeDisponivel;
@@ -18,6 +21,15 @@ public class Produto {
     private String localizacao;
 
     public Produto() {}
+
+    public Produto(String nome, String codigoBarras, double precoCompra, double precoVenda, Integer quantidadeDisponivel ) {
+            this.nome = nome;
+            this.codigoBarras = codigoBarras;
+            this.precoCompra = precoCompra;
+            this.precoVenda = precoVenda;
+            this.quantidadeDisponivel = quantidadeDisponivel;
+    }
+
 
     public boolean alertaEstoqueBaixo() {
         if (quantidadeDisponivel <= limiteMinimo) {
@@ -132,10 +144,22 @@ public class Produto {
 
     @Override
     public String toString() {
+
         return "Produto{" +
                 "quantidadeDisponivel=" + quantidadeDisponivel +
                 ", limiteMinimo=" + limiteMinimo +
                 ", fornecedor=" + fornecedor +
+                '}';
+    }
+
+    public String buscaNome(){
+
+        return "Produto{" +
+                "nome="+ nome +
+                ", Codigo de barras =" +  codigoBarras +
+                "Custo=" + precoCompra +
+                "Preço de Venda=" + precoVenda +
+                ",  quantidadeDisponivel=" + quantidadeDisponivel +
                 '}';
     }
 
