@@ -1,17 +1,35 @@
 package com.fga.tppe.tp1.models;
 
 
+import com.fga.tppe.tp1.TestesFuncionais;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.math.BigDecimal;
+import java.util.Arrays;
+import java.util.Collection;
 
 import static org.junit.jupiter.api.Assertions.*;
-
+@Category(TestesFuncionais.class)
+@RunWith(Parameterized.class)
 public class TestesConsultaEstoque {
 
     private Produto produto;
+    private Integer quantidadeDisponivel;
+    private Integer limiteMinimo;
+
+    private Fornecedor fornecedor;
+    private String nome;
+
+    private String codigoBarra;
+
+    private BigDecimal custo;
+    private BigDecimal precoVenda;
     Estoque estoque;
 
     @Before
@@ -20,16 +38,26 @@ public class TestesConsultaEstoque {
 
     }
 
+    public TestesConsultaEstoque (String nome, String codigoBarra, double custo, double precoVenda, Integer quantidadeDisponivel ){
+        this.nome = nome;
+        this.codigoBarra = codigoBarra;
+        this.custo = new BigDecimal(custo);
+        this.precoVenda = new BigDecimal(precoVenda);
+        this.quantidadeDisponivel = quantidadeDisponivel;
+    }
+
 
 
     @Test
     public void testBuscaProdutoNomeCerto(){
         Produto produtoNome;
-        produtoNome = new Produto("Cartela de Ovo","2131",9.5,16.76,30);
+        produtoNome = new Produto(nome,codigoBarra,custo.doubleValue(),precoVenda.doubleValue(),quantidadeDisponivel);
 
         estoque.addProduto(produtoNome);
 
-        Produto compara = estoque.buscaProdutoNome("Cartela de Ovo");
+        Produto compara = estoque.buscaProdutoNome("Sasami");
+
+
 
 
         assertEquals(compara.getNome(),produtoNome.getNome());
@@ -37,7 +65,6 @@ public class TestesConsultaEstoque {
         assertEquals(compara.getCusto(),produtoNome.getCusto());
         assertEquals(compara.getPrecoVenda(),produtoNome.getPrecoVenda());
         assertEquals(compara.getQuantidadeDisponivel(),produtoNome.getQuantidadeDisponivel());
-
     }
 
     @Test
@@ -53,7 +80,7 @@ public class TestesConsultaEstoque {
     public void testBuscaProdutoCodigoBarraCerto(){
         //teste para o caso certo
         Produto produtoCodigoBarra;
-        produtoCodigoBarra = new Produto("Frango","2023",17.80,26.99,50);
+        produtoCodigoBarra = new Produto(nome,codigoBarra,custo.doubleValue(),precoVenda.doubleValue(),quantidadeDisponivel);
         estoque.addProduto(produtoCodigoBarra);
         Produto compara = estoque.buscaProdutoCodigoBarra("2023");;
 
@@ -83,7 +110,7 @@ public class TestesConsultaEstoque {
     public void testListarEstoque(){
 
         Produto produtoCodigoBarra;
-        produtoCodigoBarra = new Produto("Sasami","2023",17.80,26.99,50);
+        produtoCodigoBarra = new Produto(nome,codigoBarra,custo.doubleValue(),precoVenda.doubleValue(),quantidadeDisponivel);
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputStream));
 
@@ -95,6 +122,19 @@ public class TestesConsultaEstoque {
 
         System.out.println(mensagemDeSaida);
         assertEquals("Produto{nome=Sasami,  quantidadeDisponivel=50}", mensagemDeSaida);
+    }
+
+
+
+    @Parameterized.Parameters
+    public static Collection<Object[]> getParameters() {
+        Object[][] parametros = new Object[][] {
+                // quantidadeDisponivel, limiteMinimo, isEstoqueBaixo, mensagemEsperada
+                {"Sasami","2023",17.80,26.99,50}
+
+        };
+
+        return Arrays.asList(parametros);
     }
 
 
