@@ -25,6 +25,8 @@ todos os testes continuam a passar.
 
 - [Douglas Monteles](./descriptions/Funcionalidade_Alertas_Estoque_Baixo.pdf)
 
+- [Erick Levy](./descriptions/Consulta-de%20estoque-Processo_de_%20TDD_Erick_levy.pdf)
+
 ## Referências
 
 https://www.treinaweb.com.br/blog/afinal-o-que-e-tdd
