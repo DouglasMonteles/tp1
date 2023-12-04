@@ -41,13 +41,7 @@
 
 - Para executar os testes
 
-  ```
-  # windows
-  .\mvnw.cmd test
-
-  #linux
-  ./mvnw test
-  ```
+  - Utilizamos a IDE Intellij para executar os testes
 
 ### Linguagens: 
 
