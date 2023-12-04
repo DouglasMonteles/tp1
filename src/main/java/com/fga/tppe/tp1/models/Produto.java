@@ -1,6 +1,6 @@
 package com.fga.tppe.tp1.models;
 
-import java.math.BigDecimal;
+import java.util.Date;
 
 import com.fga.tppe.tp1.exceptions.DescricaoEmBrancoException;
 import com.fga.tppe.tp1.exceptions.EstoqueNegativoException;
@@ -10,8 +10,8 @@ public class Produto {
 
     private Integer quantidadeDisponivel;
     private Integer limiteMinimo;
-
     private Fornecedor fornecedor;
+    private Lote lote;
     private String nome;
     private String codigoBarras;
     private double precoCompra;
@@ -133,6 +133,12 @@ public class Produto {
     public void setFornecedor(Fornecedor fornecedor) {
         this.fornecedor = fornecedor;
     }
+    public Lote getLote() {
+        return lote;
+    }
+    public void setLote(Lote lote) {
+        this.lote = lote;
+    }
 
     public String getLocalizacao() {
         return localizacao;
@@ -193,6 +199,29 @@ public class Produto {
     private void validarQuantidadeNegativa(int quantidade) {
         if (quantidade < 0) {
             throw new ValorInvalidoException("Quantidade não pode ser negativa.");
+        }
+    }
+
+    public void setPrecoVenda(Double precoVenda) {
+        this.precoVenda = precoVenda;
+    }
+    public boolean confereValidade(){
+
+        Date dataAtual = new Date();
+
+        long tresDiasMillis = 3 * 24 * 60 * 60 * 1000L;
+        Date dataAtualMenos3Dias = new Date(dataAtual.getTime() - tresDiasMillis);
+
+        if (lote.getValidade().before(dataAtualMenos3Dias)) {
+            System.out.println("A data de validade é anterior a 3 dias atrás da data atual.");
+            precoVenda = precoVenda - (precoVenda * 0.2);
+            return true;
+        } else if (lote.getValidade().equals(dataAtualMenos3Dias)) {
+            System.out.println("A data de validade é exatamente 3 dias atrás da data atual.");
+            return false;
+        } else {
+            System.out.println("A data de validade é posterior a 3 dias atrás da data atual.");
+            return false;
         }
     }
 }

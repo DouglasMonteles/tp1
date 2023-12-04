@@ -9,6 +9,14 @@ public class ItemTransacao {
     private BigDecimal preco;
     private Produto produto;
 
+    public boolean alertaQuantidade() {
+        if (produto.getQuantidadeDisponivel() <= quantidade) {
+            return true;
+        }
+        return false;
+    }
+
+
     public ItemTransacao() {
     }
 

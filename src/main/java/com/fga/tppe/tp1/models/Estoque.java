@@ -42,5 +42,24 @@ public class Estoque {
                     ",  quantidadeDisponivel=" + produto.getQuantidadeDisponivel() +
                     '}');
         }
+
+    }
+
+    public Integer confereLote(Integer loteId){
+        Integer totalLote = 0;
+        for (Produto p: estoqueProdutos){
+            if(p.getLote().getId().equals(loteId)) {
+                totalLote+=p.getQuantidadeDisponivel();
+            }
+        }
+        return totalLote;
+    }
+
+    public void setProdutos(Produto produto) {
+        this.estoqueProdutos.add(produto);
+    }
+
+    public List<Produto> getProduto() {
+        return this.estoqueProdutos;
     }
 }

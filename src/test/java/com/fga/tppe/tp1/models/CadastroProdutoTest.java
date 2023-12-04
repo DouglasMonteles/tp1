@@ -1,8 +1,13 @@
 package com.fga.tppe.tp1.models;
-import org.junit.Assert;
+
+import com.fga.tppe.tp1.TestesFuncionais;
 import org.junit.Before;
 import org.junit.Test;
-import static org.junit.Assert.*;
+import org.junit.experimental.categories.Category;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+
+import static org.junit.Assert.assertEquals;
 
 public class CadastroProdutoTest {
 
