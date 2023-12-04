@@ -58,7 +58,7 @@ public class TestesConsultaEstoque {
         Produto compara = estoque.buscaProdutoNome("Sasami");
 
 
-        /teste
+        //teste
 
         assertEquals(compara.getNome(),produtoNome.getNome());
         assertEquals(compara.getCodigoBarra(),produtoNome.getCodigoBarra());
