@@ -3,19 +3,25 @@ package com.fga.tppe.tp1.models;
 import java.math.BigDecimal;
 
 public class ItemTransacao {
+
     private Integer quantidade;
     private Float desconto;
     private BigDecimal preco;
     private Produto produto;
-    public ItemTransacao() {
-
-    }
 
     public boolean alertaQuantidade() {
         if (produto.getQuantidadeDisponivel() <= quantidade) {
             return true;
         }
         return false;
+    }
+
+
+    public ItemTransacao() {
+    }
+
+    public Integer getQuantidade() {
+        return quantidade;
     }
 
     public void setQuantidade(Integer quantidade) {

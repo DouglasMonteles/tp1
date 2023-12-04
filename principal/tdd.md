@@ -17,20 +17,13 @@ todos os testes continuam a passar.
 
 ![image](https://github.com/DouglasMonteles/tp1/assets/54143767/c641f4ad-c970-4173-b58c-1beed9555b60)
 
-## Resultados
+## Resultados:
 
-### Ciclos do Projeto
+- [Giulia Alcantara](./descriptions/Cadastro-Produtos-TDD_GiuliaAlcantara.pdf)
 
-#### Douglas Monteles
+- [Eric Chagas](./descriptions/Gestao_de_transacoes-Processo_de_TDD_Eric_Chagas.pdf)
 
-#### Eric Chagas
-
-#### Erik Levy
-
-#### Giulia Alcantara
-
-#### Ingrid Carvalho
-
+- [Douglas Monteles](./descriptions/Funcionalidade_Alertas_Estoque_Baixo.pdf)
 
 ## Referências
 

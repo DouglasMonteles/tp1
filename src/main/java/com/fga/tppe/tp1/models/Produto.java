@@ -1,8 +1,10 @@
 package com.fga.tppe.tp1.models;
 
-import com.fga.tppe.tp1.exceptions.EstoqueNegativoException;
-
 import java.util.Date;
+
+import com.fga.tppe.tp1.exceptions.DescricaoEmBrancoException;
+import com.fga.tppe.tp1.exceptions.EstoqueNegativoException;
+import com.fga.tppe.tp1.exceptions.ValorInvalidoException;
 
 public class Produto {
 
@@ -10,8 +12,24 @@ public class Produto {
     private Integer limiteMinimo;
     private Fornecedor fornecedor;
     private Lote lote;
-    private Double precoVenda;
+    private String nome;
+    private String codigoBarras;
+    private double precoCompra;
+    private double precoVenda;
+    private int quantidadeEstoque;
+
+    private String localizacao;
+
     public Produto() {}
+
+    public Produto(String nome, String codigoBarras, double precoCompra, double precoVenda, Integer quantidadeDisponivel ) {
+            this.nome = nome;
+            this.codigoBarras = codigoBarras;
+            this.precoCompra = precoCompra;
+            this.precoVenda = precoVenda;
+            this.quantidadeDisponivel = quantidadeDisponivel;
+    }
+
 
     public boolean alertaEstoqueBaixo() {
         if (quantidadeDisponivel <= limiteMinimo) {
@@ -31,6 +49,65 @@ public class Produto {
         }
 
         return this;
+    }
+    public String getNome() {
+        return nome;
+    }
+    public void setNome(String nome){
+        this.nome = nome;
+    }
+
+    public String getCodigoBarras() {
+        return codigoBarras;
+    }
+    public void setCodigoBarras(String codigoBarras){
+        this.codigoBarras = codigoBarras;
+    }
+
+    public double getPrecoCompra() {
+        return precoCompra;
+    }
+    public void setPrecoCompra(double precoCompra){
+        this.precoCompra = precoCompra;
+    }
+
+    public double getPrecoVenda() {
+        return precoVenda;
+    }
+    public void setPrecoVenda(double precoVenda){
+        this.precoVenda = precoVenda;
+    }
+
+    public int getQuantidadeEstoque() {
+        return quantidadeEstoque;
+    }
+    public void setQuantidadeEstoque(int quantidadeEstoque){
+        this.quantidadeEstoque = quantidadeEstoque;
+    }
+
+    public Produto cadastroProduto(String nome, String codigoBarras, double precoCompra, double precoVenda, int quantidadeEstoque)
+            throws DescricaoEmBrancoException, ValorInvalidoException {
+        Produto produto = new Produto();
+        validarEntradas(nome, codigoBarras, precoCompra, precoVenda, quantidadeEstoque);
+        produto.setNome(nome);
+        produto.setCodigoBarras(codigoBarras);
+        produto.setPrecoCompra(precoCompra);
+        produto.setPrecoVenda(precoVenda);
+        produto.setQuantidadeEstoque(quantidadeEstoque);
+
+        System.out.println("Produto cadastrado com sucesso!");
+        return produto;
+    }
+
+    private void validarEntradas(String nome, String codigoBarras, Double precoCompra, Double precoVenda, Integer quantidadeEstoque)
+            throws DescricaoEmBrancoException, ValorInvalidoException {
+        if (nome == null || codigoBarras == null || nome.isEmpty() || codigoBarras.isEmpty() ||
+         precoCompra == null || precoVenda == null || quantidadeEstoque == null){
+            throw new DescricaoEmBrancoException("Os campos não pode estar em branco");
+        }
+        if (precoCompra <= 0 || precoVenda <= 0 || quantidadeEstoque <= 0){
+            throw new ValorInvalidoException("Valores de compra, venda e quantidade devem ser maiores que zero");
+        }
     }
 
     public Integer getQuantidadeDisponivel() {
@@ -63,12 +140,32 @@ public class Produto {
         this.lote = lote;
     }
 
+    public String getLocalizacao() {
+        return localizacao;
+    }
+
+    public void setLocalizacao(String localizacao) {
+        this.localizacao = localizacao;
+    }
+
     @Override
     public String toString() {
+
         return "Produto{" +
                 "quantidadeDisponivel=" + quantidadeDisponivel +
                 ", limiteMinimo=" + limiteMinimo +
                 ", fornecedor=" + fornecedor +
+                '}';
+    }
+
+    public String buscaNome(){
+
+        return "Produto{" +
+                "nome="+ nome +
+                ", Codigo de barras =" +  codigoBarras +
+                "Custo=" + precoCompra +
+                "Preço de Venda=" + precoVenda +
+                ",  quantidadeDisponivel=" + quantidadeDisponivel +
                 '}';
     }
 
@@ -101,11 +198,8 @@ public class Produto {
     // Método para validar se a quantidade fornecida para a transacao eh negativa e lancar a excecao nesses casos
     private void validarQuantidadeNegativa(int quantidade) {
         if (quantidade < 0) {
-            throw new IllegalArgumentException("Quantidade não pode ser negativa.");
+            throw new ValorInvalidoException("Quantidade não pode ser negativa.");
         }
-    }
-    public Double getPrecoVenda() {
-        return precoVenda;
     }
 
     public void setPrecoVenda(Double precoVenda) {
