@@ -1,10 +1,18 @@
 package com.fga.tppe.tp1;
 
-import com.fga.tppe.tp1.models.*;
 import org.junit.experimental.categories.Categories;
 import org.junit.experimental.categories.Categories.IncludeCategory;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite.SuiteClasses;
+
+import com.fga.tppe.tp1.models.AlertaEstoqueBaixoTeste;
+import com.fga.tppe.tp1.models.CadastroProdutoTest;
+import com.fga.tppe.tp1.models.TestCoerenciaQuantidade;
+import com.fga.tppe.tp1.models.TestDataValidade;
+import com.fga.tppe.tp1.models.TestTotalItensLote;
+import com.fga.tppe.tp1.models.TesteTransferenciaEntreFiliais;
+import com.fga.tppe.tp1.models.TestesConsultaEstoque;
+import com.fga.tppe.tp1.models.TestesGestaoTransacoes;
 
 @RunWith(Categories.class)
 @SuiteClasses({
@@ -15,7 +23,8 @@ import org.junit.runners.Suite.SuiteClasses;
         TesteTransferenciaEntreFiliais.class,
         TestCoerenciaQuantidade.class,
         TestDataValidade.class,
-        TestTotalItensLote.class
+        TestTotalItensLote.class,
+        TestDataValidade.class
 })
 @IncludeCategory(TestesFuncionais.class)
 public class TestesFuncionais {
