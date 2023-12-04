@@ -1,7 +1,6 @@
 package com.fga.tppe.tp1.models;
-
-import java.math.BigDecimal;
 import java.util.Date;
+import java.math.BigDecimal;
 
 public class Lote {
     private Integer id;
@@ -29,7 +28,8 @@ public class Lote {
     public String getNome() {
         return nome;
     }
-    public boolean confereValidade(){
-        return true;
-    }
+
+
+
+
 }

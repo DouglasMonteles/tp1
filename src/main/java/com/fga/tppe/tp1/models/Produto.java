@@ -2,12 +2,15 @@ package com.fga.tppe.tp1.models;
 
 import com.fga.tppe.tp1.exceptions.EstoqueNegativoException;
 
+import java.util.Date;
+
 public class Produto {
 
     private Integer quantidadeDisponivel;
     private Integer limiteMinimo;
     private Fornecedor fornecedor;
     private Lote lote;
+    private Double precoVenda;
     public Produto() {}
 
     public boolean alertaEstoqueBaixo() {
@@ -99,6 +102,32 @@ public class Produto {
     private void validarQuantidadeNegativa(int quantidade) {
         if (quantidade < 0) {
             throw new IllegalArgumentException("Quantidade não pode ser negativa.");
+        }
+    }
+    public Double getPrecoVenda() {
+        return precoVenda;
+    }
+
+    public void setPrecoVenda(Double precoVenda) {
+        this.precoVenda = precoVenda;
+    }
+    public boolean confereValidade(){
+
+        Date dataAtual = new Date();
+
+        long tresDiasMillis = 3 * 24 * 60 * 60 * 1000L;
+        Date dataAtualMenos3Dias = new Date(dataAtual.getTime() - tresDiasMillis);
+
+        if (lote.getValidade().before(dataAtualMenos3Dias)) {
+            System.out.println("A data de validade é anterior a 3 dias atrás da data atual.");
+            precoVenda = precoVenda - (precoVenda * 0.2);
+            return true;
+        } else if (lote.getValidade().equals(dataAtualMenos3Dias)) {
+            System.out.println("A data de validade é exatamente 3 dias atrás da data atual.");
+            return false;
+        } else {
+            System.out.println("A data de validade é posterior a 3 dias atrás da data atual.");
+            return false;
         }
     }
 }
