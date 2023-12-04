@@ -15,7 +15,7 @@
 ## Projeto
 
 - [Visão Geral](principal/visaogeral.md)
-- [TDD + Resultados](principal/tdd.md)
+- [TDD - Conceituação e Resultados](principal/tdd.md)
 
 ## ➿ Execução do Projeto
 
@@ -48,8 +48,6 @@
   #linux
   ./mvnw test
   ```
-
-### Resultados: 
 
 ### Linguagens: 
 

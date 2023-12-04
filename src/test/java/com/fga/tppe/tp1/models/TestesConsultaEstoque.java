@@ -61,8 +61,8 @@ public class TestesConsultaEstoque {
         //teste
 
         assertEquals(compara.getNome(),produtoNome.getNome());
-        assertEquals(compara.getCodigoBarra(),produtoNome.getCodigoBarra());
-        assertEquals(compara.getCusto(),produtoNome.getCusto());
+        assertEquals(compara.getCodigoBarras(),produtoNome.getCodigoBarras());
+        assertEquals(compara.getPrecoCompra(),produtoNome.getPrecoCompra());
         assertEquals(compara.getPrecoVenda(),produtoNome.getPrecoVenda());
         assertEquals(compara.getQuantidadeDisponivel(),produtoNome.getQuantidadeDisponivel());
     }
@@ -87,8 +87,8 @@ public class TestesConsultaEstoque {
 
 
         assertEquals(compara.getNome(),produtoCodigoBarra.getNome());
-        assertEquals(compara.getCodigoBarra(),produtoCodigoBarra.getCodigoBarra());
-        assertEquals(compara.getCusto(),produtoCodigoBarra.getCusto());
+        assertEquals(compara.getCodigoBarras(),produtoCodigoBarra.getCodigoBarras());
+        assertEquals(compara.getPrecoCompra(),produtoCodigoBarra.getPrecoCompra());
         assertEquals(compara.getPrecoVenda(),produtoCodigoBarra.getPrecoVenda());
         assertEquals(compara.getQuantidadeDisponivel(),produtoCodigoBarra.getQuantidadeDisponivel());
 

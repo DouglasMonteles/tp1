@@ -21,7 +21,7 @@ public class Estoque {
 
     public Produto buscaProdutoCodigoBarra(String codigoBarra){
         for(Produto produto: estoqueProdutos){
-            if(produto.getCodigoBarra().equals(codigoBarra)){
+            if(produto.getCodigoBarras().equals(codigoBarra)){
                 produto.buscaNome();
                 return produto;
             }

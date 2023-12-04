@@ -1,34 +1,29 @@
 package com.fga.tppe.tp1.models;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import com.fga.tppe.tp1.models.Produto;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-class TestesGestaoTransacoes {
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.experimental.categories.Category;
+
+import com.fga.tppe.tp1.TestesExcecoes;
+import com.fga.tppe.tp1.exceptions.ValorInvalidoException;
+
+@Category(TestesExcecoes.class)
+public class TestesGestaoTransacoesExcecao {
     private Produto produto;
 
-    @BeforeEach
+    @Before
     public void setUp() {
         produto = new Produto();
-        produto.setQuantidadeDisponivel(10); // Definindo a quantidade inicial como 10
-        produto.setLimiteMinimo(20); // Definindo o limite mínimo como 20 para acionar o alerta de estoque baixo
-    }
-
-    @Test
-    public void testRecebimentoMercadoria() {
-        int quantidadeRecebida = 15;
-        produto.receberMercadoria(quantidadeRecebida);
-
-        int quantidadeEsperada = 25;
-        assertEquals(quantidadeEsperada, produto.getQuantidadeDisponivel()); // Não deveria lançar exceção e o valor deveria ser validado corretamente, como atualizado
     }
 
     @Test
     public void testVendaMercadoriaNegativo() {
         int quantidadeParaVenda = -19;
 
-        assertThrows(IllegalArgumentException.class, () -> {
+        assertThrows(ValorInvalidoException.class, () -> {
             produto.venderMercadoria(quantidadeParaVenda);
         });
     }
@@ -37,7 +32,7 @@ class TestesGestaoTransacoes {
     public void testDevolucaoNegativo() {
         int quantidadeParaDevolver = -5;
 
-        assertThrows(IllegalArgumentException.class, () -> {
+        assertThrows(ValorInvalidoException.class, () -> {
             produto.devolverMercadoria(quantidadeParaDevolver);
         });
     }
@@ -46,7 +41,7 @@ class TestesGestaoTransacoes {
     public void testTransferenciaNegativo() {
         int quantidadeParaTransferir = -92;
 
-        assertThrows(IllegalArgumentException.class, () -> {
+        assertThrows(ValorInvalidoException.class, () -> {
             produto.transferirMercadoria(quantidadeParaTransferir);
         });
     }
