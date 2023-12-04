@@ -2,14 +2,32 @@ package com.fga.tppe.tp1.models;
 
 import com.fga.tppe.tp1.exceptions.EstoqueNegativoException;
 
+import java.math.BigDecimal;
+
 public class Produto {
 
     private Integer quantidadeDisponivel;
     private Integer limiteMinimo;
 
     private Fornecedor fornecedor;
+    private String nome;
+
+    private String codigoBarra;
+
+    private BigDecimal custo;
+    private BigDecimal precoVenda;
+
 
     public Produto() {}
+
+    public Produto(String nome, String codigoBarra, double custo, double precoVenda, Integer quantidadeDisponivel ) {
+            this.nome = nome;
+            this.codigoBarra = codigoBarra;
+            this.custo = new BigDecimal(custo);
+            this.precoVenda = new BigDecimal(precoVenda);
+            this.quantidadeDisponivel = quantidadeDisponivel;
+    }
+
 
     public boolean alertaEstoqueBaixo() {
         if (quantidadeDisponivel <= limiteMinimo) {
@@ -57,10 +75,22 @@ public class Produto {
 
     @Override
     public String toString() {
+
         return "Produto{" +
                 "quantidadeDisponivel=" + quantidadeDisponivel +
                 ", limiteMinimo=" + limiteMinimo +
                 ", fornecedor=" + fornecedor +
+                '}';
+    }
+
+    public String buscaNome(){
+
+        return "Produto{" +
+                "nome="+ nome +
+                ", Codigo de barras =" +  codigoBarra +
+                "Custo=" + custo +
+                "Preço de Venda=" + precoVenda +
+                ",  quantidadeDisponivel=" + quantidadeDisponivel +
                 '}';
     }
 
@@ -95,5 +125,21 @@ public class Produto {
         if (quantidade < 0) {
             throw new IllegalArgumentException("Quantidade não pode ser negativa.");
         }
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public String getCodigoBarra() {
+        return codigoBarra;
+    }
+
+    public BigDecimal getCusto() {
+        return custo;
+    }
+
+    public BigDecimal getPrecoVenda(){
+        return precoVenda;
     }
 }

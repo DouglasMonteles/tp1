@@ -5,7 +5,7 @@ import com.fga.tppe.tp1.models.Produto;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class TestesGestaoTransacoes {
+class TestesGestaoTransacoes {
     private Produto produto;
 
     @BeforeEach
