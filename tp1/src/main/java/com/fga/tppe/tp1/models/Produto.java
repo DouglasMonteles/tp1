@@ -5,6 +5,7 @@ import java.util.Date;
 import com.fga.tppe.tp1.exceptions.DescricaoEmBrancoException;
 import com.fga.tppe.tp1.exceptions.EstoqueNegativoException;
 import com.fga.tppe.tp1.exceptions.ValorInvalidoException;
+import com.fga.tppe.tp1.services.Validacao;
 
 public class Produto {
 
@@ -88,7 +89,7 @@ public class Produto {
     public Produto cadastroProduto(String nome, String codigoBarras, double precoCompra, double precoVenda, int quantidadeEstoque)
             throws DescricaoEmBrancoException, ValorInvalidoException {
         Produto produto = new Produto();
-        validarEntradas(nome, codigoBarras, precoCompra, precoVenda, quantidadeEstoque);
+        Validacao.validarEntradas(nome, codigoBarras, precoCompra, precoVenda, quantidadeEstoque);
         produto.setNome(nome);
         produto.setCodigoBarras(codigoBarras);
         produto.setPrecoCompra(precoCompra);
@@ -97,17 +98,6 @@ public class Produto {
 
         System.out.println("Produto cadastrado com sucesso!");
         return produto;
-    }
-
-    private void validarEntradas(String nome, String codigoBarras, Double precoCompra, Double precoVenda, Integer quantidadeEstoque)
-            throws DescricaoEmBrancoException, ValorInvalidoException {
-        if (nome == null || codigoBarras == null || nome.isEmpty() || codigoBarras.isEmpty() ||
-         precoCompra == null || precoVenda == null || quantidadeEstoque == null){
-            throw new DescricaoEmBrancoException("Os campos não pode estar em branco");
-        }
-        if (precoCompra <= 0 || precoVenda <= 0 || quantidadeEstoque <= 0){
-            throw new ValorInvalidoException("Valores de compra, venda e quantidade devem ser maiores que zero");
-        }
     }
 
     public Integer getQuantidadeDisponivel() {
@@ -172,34 +162,27 @@ public class Produto {
     // Testes Gestao de transacoes
 
     public void receberMercadoria(int quantidadeRecebida) {
-        validarQuantidadeNegativa(quantidadeRecebida);
+        Validacao.validarQuantidadeNegativa(quantidadeRecebida);
         this.quantidadeDisponivel += quantidadeRecebida;
     }
 
     public void venderMercadoria(int quantidadeParaVenda) {
-        validarQuantidadeNegativa(quantidadeParaVenda);
+        Validacao.validarQuantidadeNegativa(quantidadeParaVenda);
         this.quantidadeDisponivel -= quantidadeParaVenda;
     }
 
     public void devolverMercadoria(int quantidadeParaDevolver) {
-        validarQuantidadeNegativa(quantidadeParaDevolver);
+        Validacao.validarQuantidadeNegativa(quantidadeParaDevolver);
         this.quantidadeDisponivel += quantidadeParaDevolver;
     }
 
     public void transferirMercadoria(int quantidadeParaTransferir) {
-        validarQuantidadeNegativa(quantidadeParaTransferir);
+        Validacao.validarQuantidadeNegativa(quantidadeParaTransferir);
         this.quantidadeDisponivel -= quantidadeParaTransferir;
     }
 
     public void ajustarEstoque(int quantidadeTotalFinal) {
         this.quantidadeDisponivel = quantidadeTotalFinal;
-    }
-
-    // Método para validar se a quantidade fornecida para a transacao eh negativa e lancar a excecao nesses casos
-    private void validarQuantidadeNegativa(int quantidade) {
-        if (quantidade < 0) {
-            throw new ValorInvalidoException("Quantidade não pode ser negativa.");
-        }
     }
 
     public void setPrecoVenda(Double precoVenda) {
