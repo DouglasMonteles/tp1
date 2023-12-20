@@ -231,27 +231,205 @@ pelo menos uma operação de refatoração capaz de levar o projeto de código a
 
 ## Ingrid
 
-### Nome da característica
+
+### Simplicidade
 
 #### Descrição
-Uma descrição da característica, mostrando claramente quais são os seus efeitos no código (em termo de estrutura, claridade, coesão, acoplamento dentre outros efeitos aplicáveis)
+A simplicidade é uma característica fundamental no desenvolvimento de software, e quando aplicada a um projeto Java, ela pode ter impactos significativos na estrutura, claridade, coesão, acoplamento e outros aspectos relacionados ao código. Aqui estão alguns dos efeitos aplicáveis:
 
-#### Relação com os meus-cheiros
-uma relação da característica com os maus-cheiros de código definidos por Fowler. Uma descrição dos maus cheiros está disponível nos slides sobre o conteúdo de refatoração;
+- Estrutura Clara e Concisa: Projetos Java que priorizam a simplicidade tendem a ter uma estrutura mais clara e concisa. Classes e métodos são organizados de forma lógica e fácil de entender, facilitando a navegação e manutenção do código.
+
+- Clareza de Propósito: A simplicidade no código Java geralmente resulta em métodos e classes que têm um propósito claro e específico. Cada componente realiza uma função bem definida, tornando o código mais compreensível para desenvolvedores que o mantêm ou trabalham nele pela primeira vez.
+    
+- Facilidade de Manutenção: Projetos simples são mais fáceis de manter. As alterações e correções podem ser feitas com menos esforço, pois não há complexidade desnecessária a ser compreendida. Isso contribui para a agilidade no desenvolvimento e reduz a probabilidade de introduzir erros durante as atualizações.
+
+- Coesão Aprimorada: A simplicidade promove a coesão, ou seja, a medida em que os elementos de um módulo estão relacionados entre si. Métodos e classes simples geralmente têm uma responsabilidade única, o que melhora a coesão. Isso facilita a compreensão do código e a manutenção futura.
+  
+- Facilidade de Testes: Projetos simples são mais fáceis de testar, pois as funcionalidades são divididas em partes pequenas e isoladas. Isso facilita a criação de testes unitários eficazes, garantindo que cada parte do código funcione conforme o esperado.
+
+- Menor Custo de Aprendizado: Desenvolvedores novos ou externos ao projeto podem compreender mais rapidamente um código simples. Isso reduz o tempo necessário para se familiarizar com o sistema e aumenta a eficiência da equipe de desenvolvimento.
+
+#### Relação com os maus-cheiros
+Existem diferentes tipos de maus-cheiros de código, e a busca pela simplicidade pode ajudar a combater vários deles. Vamos examinar como a simplicidade está relacionada a alguns maus-cheiros comuns identificados por Fowler:
+
+- Má Nomenclatura (Bad Smell - Nomes Ruins):
+    Nomes de variáveis, métodos ou classes pouco descritivos são considerados um mau-cheiro de código. A simplicidade promove o uso de nomes claros e significativos, facilitando a compreensão do código sem a necessidade de comentários excessivos.
+     
+    *Exemplo*: Como podemos ver na classe PedidoCodeSmells, podemos ver abaixo o uso da simplicidade que resultaria em mau cheiro, pois causaria confusão os atributos com nomes não explicativos.
+
+    ``` java
+    public class PedidoCodeSmells {
+        private String nome;
+        private int qty;
+        private double p;
+
+        public PedidoCodeSmells(String n, int q, double p) {
+            this.nome = n;
+            this.qty = q;
+            this.p = calcularPreco(p);
+        }
+
+        private double calcularPreco(double precoUnitario) {
+            return qty * precoUnitario;
+        }
+
+        public double obterPreco() {
+            return p;
+        }
+
+        public String getProduto() {
+            return nome;
+        }
+
+        public int getQuantidade() {
+            return qty;
+        }
+    }
+ 
+    ```
+
+
 
 #### Operação de Refatoração
-pelo menos uma operação de refatoração capaz de levar o projeto de código a ter a característica em análise
+Aqui podemos ver o codigo com simplicidade, nomes descritivos e consistência contribuindo para um código mais limpo e fácil de entender.
+
+``` java
+public class PedidoSimples {
+    private String produto;
+    private int quantidade;
+    private double precoTotal;
+
+    public PedidoSimples(String produto, int quantidade, double precoUnitario) {
+        this.produto = produto;
+        this.quantidade = quantidade;
+        this.precoTotal = calcularPrecoTotal(precoUnitario);
+    }
+
+    private double calcularPrecoTotal(double precoUnitario) {
+        return quantidade * precoUnitario;
+    }
+
+    // Getters...
+}
+```
 
 <br/>
 
 ### Nome da característica
 
 #### Descrição
-Uma descrição da característica, mostrando claramente quais são os seus efeitos no código (em termo de estrutura, claridade, coesão, acoplamento dentre outros efeitos aplicáveis)
+A ausência de duplicidade, também conhecida como "Don't Repeat Yourself" (DRY), é uma característica de design de software que enfatiza a eliminação de redundâncias no código. Isso implica que cada pedaço de conhecimento ou lógica no sistema deve ser expresso em apenas um lugar. Aqui estão alguns efeitos dessa característica no código de um projeto:
+
+- Estrutura Mais Clara: Quando a duplicidade é evitada, a estrutura do código tende a ser mais clara e organizada. Módulos, classes e métodos podem ser projetados de forma mais concisa, facilitando a compreensão do código global.
+- Facilidade de Manutenção:
+    Código sem duplicidade é mais fácil de manter, pois as alterações e atualizações precisam ser feitas apenas em um local. Isso reduz o risco de inconsistências e erros decorrentes de alterações não sincronizadas em diferentes partes do código.
+
+- Reusabilidade Aprimorada: A ausência de duplicidade promove a reusabilidade do código. Lógicas específicas podem ser encapsuladas em funções ou classes, e essas abstrações podem ser facilmente reutilizadas em diferentes partes do projeto, aumentando a eficiência do desenvolvimento.
+
+- Coesão Reforçada: Evitar duplicidade geralmente leva a uma maior coesão. Módulos e classes têm responsabilidades mais claras e específicas, pois não estão ocupadas repetindo lógicas existentes em outros lugares. Isso contribui para um design mais coeso e modular.
+  
+- Baixo Acoplamento: A ausência de duplicidade pode reduzir o acoplamento entre diferentes partes do sistema. Se um mesmo trecho de lógica é usado em várias partes do código, alterações em um local podem afetar inesperadamente outros locais. Evitar duplicidade diminui esse risco.
+
+- Clareza e Legibilidade: Código sem duplicidade tende a ser mais claro e legível. Desenvolvedores podem entender mais facilmente o propósito de uma parte do código, pois não há variações ou redundâncias confusas.
+
+- Manutenção Menos Propensa a Erros: A ausência de duplicidade reduz a propensão a erros de manutenção. Alterações em um local não exigem a busca por todos os lugares onde um trecho de lógica está duplicado, minimizando o risco de esquecimentos ou inconsistências.
+  
+- Facilidade de Testes: Código sem duplicidade é mais fácil de testar. Uma vez que a lógica é centralizada, os testes podem ser aplicados de maneira mais eficiente e abrangente, garantindo que a funcionalidade seja consistente em todos os usos.
 
 #### Relação com os meus-cheiros
-uma relação da característica com os maus-cheiros de código definidos por Fowler. Uma descrição dos maus cheiros está disponível nos slides sobre o conteúdo de refatoração;
+O código com duplicidade repete estruturas de loop e operações similares em duas funções diferentes, o que torna o código mais difícil de manter e aumenta a chance de inconsistências. Por exemplo: 
+
+``` java
+public class CarrinhoCompraDuplicidade {
+
+    public double calcularPrecoTotal(List<Produto> produtos) {
+        double precoTotal = 0;
+
+        for (Produto produto : produtos) {
+            precoTotal += produto.getPreco();
+        }
+
+        return precoTotal;
+    }
+
+    public double calcularDescontoTotal(List<Produto> produtos) {
+        double descontoTotal = 0;
+
+        for (Produto produto : produtos) {
+            descontoTotal += produto.getDesconto();
+        }
+
+        return descontoTotal;
+    }
+}
+
+```
 
 #### Operação de Refatoração
-pelo menos uma operação de refatoração capaz de levar o projeto de código a ter a característica em análise
+
+Manutenibilidade:
+
+Nesta refatoração, introduzimos uma interface Calculadora que define um método calcular, permitindo diferentes estratégias de cálculo. Criamos duas implementações específicas dessa interface: CalculadoraPreco e CalculadoraDesconto, cada uma responsável por um tipo específico de cálculo.
+
+A classe CarrinhoCompra agora aceita uma instância de Calculadora como parâmetro, tornando o código mais flexível e extensível. Você pode facilmente adicionar novos tipos de cálculos sem modificar o código existente.
+
+Essa abordagem elimina a duplicidade ao separar as responsabilidades de cálculo e permite uma extensibilidade fácil para futuros tipos de cálculos. Além disso, é mais alinhada com os princípios de orientação a objetos, facilitando a manutenção e compreensão do código
+
+
+```java
+import java.util.List;
+
+public class CarrinhoCompra {
+
+    public double calcularTotal(List<Produto> produtos, Calculadora calculadora) {
+        double resultado = 0;
+
+        for (Produto produto : produtos) {
+            resultado += calculadora.calcular(produto);
+        }
+
+        return resultado;
+    }
+}
+
+interface Calculadora {
+    double calcular(Produto produto);
+}
+
+class CalculadoraPreco implements Calculadora {
+    @Override
+    public double calcular(Produto produto) {
+        return produto.getPreco();
+    }
+}
+
+class CalculadoraDesconto implements Calculadora {
+    @Override
+    public double calcular(Produto produto) {
+        return produto.getDesconto();
+    }
+}
+
+```
+
+
+```java
+public class Main {
+    public static void main(String[] args) {
+        CarrinhoCompra carrinho = new CarrinhoCompra();
+        List<Produto> produtos = // Obtenha a lista de produtos
+
+        Calculadora calculadoraPreco = new CalculadoraPreco();
+        double totalPreco = carrinho.calcularTotal(produtos, calculadoraPreco);
+        System.out.println("Total Preço: " + totalPreco);
+
+        Calculadora calculadoraDesconto = new CalculadoraDesconto();
+        double totalDesconto = carrinho.calcularTotal(produtos, calculadoraDesconto);
+        System.out.println("Total Desconto: " + totalDesconto);
+    }
+}
+
+```
+
+
 
