@@ -1,10 +1,6 @@
 package com.fga.tppe.tp1.models;
 
-import java.util.Date;
-
-import com.fga.tppe.tp1.exceptions.DescricaoEmBrancoException;
 import com.fga.tppe.tp1.exceptions.EstoqueNegativoException;
-import com.fga.tppe.tp1.exceptions.ValorInvalidoException;
 import com.fga.tppe.tp1.services.Validacao;
 
 public class Produto {
@@ -84,20 +80,6 @@ public class Produto {
     }
     public void setQuantidadeEstoque(int quantidadeEstoque){
         this.quantidadeEstoque = quantidadeEstoque;
-    }
-
-    public Produto cadastroProduto(String nome, String codigoBarras, double precoCompra, double precoVenda, int quantidadeEstoque)
-            throws DescricaoEmBrancoException, ValorInvalidoException {
-        Produto produto = new Produto();
-        Validacao.validarEntradas(nome, codigoBarras, precoCompra, precoVenda, quantidadeEstoque);
-        produto.setNome(nome);
-        produto.setCodigoBarras(codigoBarras);
-        produto.setPrecoCompra(precoCompra);
-        produto.setPrecoVenda(precoVenda);
-        produto.setQuantidadeEstoque(quantidadeEstoque);
-
-        System.out.println("Produto cadastrado com sucesso!");
-        return produto;
     }
 
     public Integer getQuantidadeDisponivel() {
@@ -187,24 +169,5 @@ public class Produto {
 
     public void setPrecoVenda(Double precoVenda) {
         this.precoVenda = precoVenda;
-    }
-    public boolean confereValidade(){
-
-        Date dataAtual = new Date();
-
-        long tresDiasMillis = 3 * 24 * 60 * 60 * 1000L;
-        Date dataAtualMenos3Dias = new Date(dataAtual.getTime() - tresDiasMillis);
-
-        if (lote.getValidade().before(dataAtualMenos3Dias)) {
-            System.out.println("A data de validade é anterior a 3 dias atrás da data atual.");
-            precoVenda = precoVenda - (precoVenda * 0.2);
-            return true;
-        } else if (lote.getValidade().equals(dataAtualMenos3Dias)) {
-            System.out.println("A data de validade é exatamente 3 dias atrás da data atual.");
-            return false;
-        } else {
-            System.out.println("A data de validade é posterior a 3 dias atrás da data atual.");
-            return false;
-        }
     }
 }

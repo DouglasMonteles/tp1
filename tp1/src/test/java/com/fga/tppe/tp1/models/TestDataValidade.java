@@ -6,6 +6,8 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Date;
 
+import com.fga.tppe.tp1.services.ProdutoService;
+import com.fga.tppe.tp1.services.impl.ProdutoServiceImpl;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
@@ -13,10 +15,13 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
 import com.fga.tppe.tp1.TestesFuncionais;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @Category(TestesFuncionais.class)
 @RunWith(Parameterized.class)
 public class TestDataValidade {
+
+    private ProdutoService produtoService;
 
     private Lote lote;
     private Produto produto;
@@ -40,6 +45,8 @@ public class TestDataValidade {
         this.validade = validade;
         this.precoVenda = precoVenda;
         this.resultado = resultado;
+
+        this.produtoService = new ProdutoServiceImpl();
     }
     @Parameterized.Parameters
     public static Collection<Object[]> getParameters() {
@@ -52,6 +59,6 @@ public class TestDataValidade {
     }
     @Test
     public void AlertaConfereValidadeDentroPrazo() {
-        assertEquals(resultado, this.produto.confereValidade());
+        assertEquals(resultado, this.produtoService.confereValidade(produto));
     }
 }
