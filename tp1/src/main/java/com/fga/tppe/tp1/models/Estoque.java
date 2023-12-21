@@ -8,7 +8,7 @@ public class Estoque {
 
     private List<Produto> estoqueProdutos = new ArrayList<>();
 
-    public Produto buscaProdutoNome(String nome) {
+    public Produto buscarProdutoPorNome(String nome) {
         for (Produto produto: estoqueProdutos) {
             if(produto.getNome().equalsIgnoreCase(nome)){
                 produto.buscaNome();
@@ -19,7 +19,7 @@ public class Estoque {
         return null;
     }
 
-    public Produto buscaProdutoCodigoBarra(String codigoBarra){
+    public Produto buscarProdutoPorCodigoDeBarra(String codigoBarra){
         for(Produto produto: estoqueProdutos){
             if(produto.getCodigoBarras().equals(codigoBarra)){
                 produto.buscaNome();
@@ -31,11 +31,11 @@ public class Estoque {
     }
 
 
-    public void addProduto(Produto produto){
+    public void adicionarProduto(Produto produto){
         this.estoqueProdutos.add(produto);
     }
 
-    public void ListarProdutos(){
+    public void listarProdutos(){
         for(Produto produto: estoqueProdutos){
             System.out.println("Produto{" +
                     "nome=" + produto.getNome() +

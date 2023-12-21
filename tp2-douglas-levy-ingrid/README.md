@@ -46,7 +46,7 @@ Modularidade no desenvolvimento de software se refere à prática de dividir o s
   *Alta Coesão*: Módulos altamente coesos são mais fáceis de manter, pois suas funcionalidades estão logicamente agrupadas.
 
 
-#### Relação com os meus-cheiros
+#### Relação com os maus-cheiros
 
 O Baixo acoplamento definido pela modularização é o oposto do acoplamento excessivo. Quando os módulos estão altamente acoplados, mudanças em um componente afetam fortemente outros componentes, o que torna o código mais frágil e difícil de manter. 
 
@@ -117,7 +117,7 @@ Uma boa interface em programação é crucial para criar um código claro, coeso
 
 - Legibilidade e documentação: Interfaces bem nomeadas e descritivas servem como documentação do código.
 
-#### Relação com os meus-cheiros
+#### Relação com os maus-cheiros
 
 - Código Duplicado: A falta de interfaces claras e reutilizáveis pode levar à duplicação de código. Se várias classes têm funcionalidades semelhantes, mas não implementam uma interface comum, é provável que haja repetição de código para essas funcionalidades.
 - Feature Envy (Inveja de Funcionalidade): Quando uma classe está excessivamente interessada nos detalhes internos de outra classe (e, portanto, "inveja" sua funcionalidade), pode ser porque não há uma interface apropriada que defina claramente como interagir com essa classe. A falta de uma interface pode levar a dependências diretas excessivas entre classes, resultando em feature envy.
@@ -204,29 +204,177 @@ Commit da aplicação dessa funcionalidade: [commit de interface](https://github
 
 ## Levy
 
-### Nome da característica
+### Portabilidade 
 
 #### Descrição
-Uma descrição da característica, mostrando claramente quais são os seus efeitos no código (em termo de estrutura, claridade, coesão, acoplamento dentre outros efeitos aplicáveis)
 
-#### Relação com os meus-cheiros
-uma relação da característica com os maus-cheiros de código definidos por Fowler. Uma descrição dos maus cheiros está disponível nos slides sobre o conteúdo de refatoração;
+Descrição
+
+A portabilidade é a capacidade de um código ser executado em diferentes plataformas, ambientes ou linguagens. Um código portátil é aquele que não depende de recursos específicos de uma plataforma ou ambiente, e que pode ser facilmente adaptado para funcionar em outros contextos.
+
+A portabilidade pode ser obtida de várias maneiras, incluindo:
+
+- Uso de padrões e APIs padrão: O uso de padrões e APIs padrão ajuda a garantir que o código seja independente de uma plataforma ou linguagem específica.
+- Uso de abstrações: O uso de abstrações permite que o código seja escrito de forma genérica, sem depender de implementações específicas.
+- Uso de testes automatizados: Os testes automatizados podem ajudar a garantir que o código funcione corretamente em diferentes plataformas e ambientes.
+Efeitos no código
+
+A portabilidade tem vários efeitos positivos no código, incluindo:
+
+- Melhora a estrutura do código: O código portátil é geralmente mais estruturado e organizado, o que o torna mais fácil de entender e manter.
+- Melhora a claridade do código: O código portátil é geralmente mais claro e conciso, o que o torna mais fácil de ler e entender.
+- Melhora a coesão do código: O código portátil é geralmente mais coeso, o que o torna mais fácil de testar e depurar.
+Reduz o acoplamento do código: O código portátil é geralmente menos acoplado, o que o torna mais fácil de modificar e estender.
+#### Relação com os maus-cheiros
+- Codigo acoplado: O código portátil é geralmente menos acoplado, o que ajuda a reduzir o risco de alterações em um componente afetarem outros componentes.
+- Codigo redundante: O código portátil pode ajudar a reduzir a redundância, o que pode tornar o código mais fácil de entender e manter.
+- Codigo centralizado: O código portátil pode ajudar a distribuir o controle do código, o que pode ajudar a melhorar a flexibilidade e a resiliência do sistema.
 
 #### Operação de Refatoração
-pelo menos uma operação de refatoração capaz de levar o projeto de código a ter a característica em análise
+```java
+
+    public Produto buscarProdutoPorNome(String nome) {
+        for (Produto produto: estoqueProdutos) {
+            if(produto.getNome().equalsIgnoreCase(nome)){
+                produto.buscaNome();
+                return produto;
+            }
+        }
+
+        return null;
+    }
+
+    public Produto buscarProdutoPorCodigoDeBarra(String codigoBarra){
+        for(Produto produto: estoqueProdutos){
+            if(produto.getCodigoBarras().equals(codigoBarra)){
+                produto.buscaNome();
+                return produto;
+            }
+        }
+
+        return null;
+    }
+
+
+    public void adicionarProduto(Produto produto){
+        this.estoqueProdutos.add(produto);
+    }
+
+    public void listarProdutos(){
+        for(Produto produto: estoqueProdutos){
+            System.out.println("Produto{" +
+                    "nome=" + produto.getNome() +
+                    ",  quantidadeDisponivel=" + produto.getQuantidadeDisponivel() +
+                    '}');
+        }
+
+    }
+
+```
+
+
+
 
 <br/>
 
-### Nome da característica
+### Elegancia
 
 #### Descrição
-Uma descrição da característica, mostrando claramente quais são os seus efeitos no código (em termo de estrutura, claridade, coesão, acoplamento dentre outros efeitos aplicáveis)
+Elegância é uma característica de um código que o torna agradável de ler, entender e manter. Ela é uma combinação de vários fatores, incluindo:
 
-#### Relação com os meus-cheiros
-uma relação da característica com os maus-cheiros de código definidos por Fowler. Uma descrição dos maus cheiros está disponível nos slides sobre o conteúdo de refatoração;
+
+- Estrutura: O código deve ser bem estruturado, com uma organização lógica e clara.
+- Claridade: O código deve ser claro e fácil de entender, mesmo para pessoas que não estão familiarizadas com ele.
+- Coesão: As diferentes partes do código devem estar relacionadas entre si de forma significativa.
+- Acoplamento: As diferentes partes do código devem estar acopladas de forma fraca, de modo que possam ser facilmente alteradas ou substituídas.
+
+- Facilidade de compreensão: O código elegante é mais fácil de entender, mesmo para pessoas que não estão familiarizadas com ele. Isso torna mais fácil para os desenvolvedores trabalharem com o código, para os QAs testarem o código e para os usuários usarem o software.
+- Facilidade de manutenção: O código elegante é mais fácil de manter, pois as mudanças são mais fáceis de serem feitas sem afetar outras partes do código. Isso reduz o custo de manutenção do software.
+- Redução de erros: O código elegante é menos propenso a erros, pois é mais fácil de entender e manter. Isso melhora a qualidade do software.
+
+#### Relação com os maus-cheiros
+- Coesão fraca: O código elegante tem uma coesão forte, o que significa que as diferentes partes do código estão relacionadas entre si de forma significativa. Isso ajuda a evitar o mau cheiro de coesão fraca.
+- Acoplamento forte: O código elegante tem um acoplamento fraco, o que significa que as diferentes partes do código estão acopladas de forma fraca. Isso ajuda a evitar o mau cheiro de acoplamento forte.
+- Duplicação: O código elegante evita a duplicação, o que significa que o código não é repetido em diferentes partes do código. Isso ajuda a evitar o mau cheiro de duplicação.
+- Codigo acoplado a interfaces externas: O código elegante não deve estar acoplado a interfaces externas, o que significa que o código não deve depender de bibliotecas ou frameworks externos. Isso ajuda a evitar o mau cheiro de código acoplado a interfaces externas.
 
 #### Operação de Refatoração
-pelo menos uma operação de refatoração capaz de levar o projeto de código a ter a característica em análise
+```java
+public TestesConsultaEstoque(String nome, String codigoBarra, double custo, double precoVenda, Integer quantidadeDisponivel) {
+        this.nome = nome;
+        this.codigoBarra = codigoBarra;
+        this.custo = new BigDecimal(custo);
+        this.precoVenda = new BigDecimal(precoVenda);
+        this.quantidadeDisponivel = quantidadeDisponivel;
+    }
+
+    @Test
+    public void testBuscarProdutoPorNomeCorreto() {
+        Produto produtoNome = new Produto(nome, codigoBarra, custo.doubleValue(), precoVenda.doubleValue(), quantidadeDisponivel);
+        estoque.adicionarProduto(produtoNome);
+
+        Produto comparar = estoque.buscarProdutoPorNome("Sasami");
+
+        assertEquals(comparar.getNome(), produtoNome.getNome());
+        assertEquals(comparar.getCodigoBarras(), produtoNome.getCodigoBarras());
+        assertEquals(comparar.getPrecoCompra(), produtoNome.getPrecoCompra());
+        assertEquals(comparar.getPrecoVenda(), produtoNome.getPrecoVenda());
+        assertEquals(comparar.getQuantidadeDisponivel(), produtoNome.getQuantidadeDisponivel());
+    }
+
+    @Test
+    public void testBuscarProdutoPorNomeInexistente() {
+        Produto compararInexistente = estoque.buscarProdutoPorNome("leite");
+        assertNull(compararInexistente);
+    }
+
+    @Test
+    public void testBuscarProdutoPorCodigoDeBarraCorreto() {
+        Produto produtoCodigoBarra = new Produto(nome, codigoBarra, custo.doubleValue(), precoVenda.doubleValue(), quantidadeDisponivel);
+        estoque.adicionarProduto(produtoCodigoBarra);
+
+        Produto comparar = estoque.buscarProdutoPorCodigoDeBarra("2023");
+
+        assertEquals(comparar.getNome(), produtoCodigoBarra.getNome());
+        assertEquals(comparar.getCodigoBarras(), produtoCodigoBarra.getCodigoBarras());
+        assertEquals(comparar.getPrecoCompra(), produtoCodigoBarra.getPrecoCompra());
+        assertEquals(comparar.getPrecoVenda(), produtoCodigoBarra.getPrecoVenda());
+        assertEquals(comparar.getQuantidadeDisponivel(), produtoCodigoBarra.getQuantidadeDisponivel());
+    }
+
+    @Test
+    public void testBuscarProdutoPorCodigoDeBarraInexistente() {
+        Produto compararInexistente = estoque.buscarProdutoPorCodigoDeBarra("2000");
+        assertNull(compararInexistente);
+    }
+
+    @Test
+    public void testListarEstoque() {
+        Produto produtoCodigoBarra = new Produto(nome, codigoBarra, custo.doubleValue(), precoVenda.doubleValue(), quantidadeDisponivel);
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputStream));
+
+        estoque.adicionarProduto(produtoCodigoBarra);
+
+        estoque.listarProdutos();
+        String mensagemDeSaida = outputStream.toString().trim();
+
+        System.out.println(mensagemDeSaida);
+        assertEquals("Produto{nome=Sasami,  quantidadeDisponivel=50}", mensagemDeSaida);
+    }
+
+    @Parameterized.Parameters
+    public static Collection<Object[]> obterParametros() {
+        Object[][] parametros = new Object[][] {
+                {"Sasami", "2023", 17.80, 26.99, 50}
+        };
+
+        return Arrays.asList(parametros);
+    }
+}
+
+
+```
 
 
 ## Ingrid
@@ -336,7 +484,7 @@ A ausência de duplicidade, também conhecida como "Don't Repeat Yourself" (DRY)
   
 - Facilidade de Testes: Código sem duplicidade é mais fácil de testar. Uma vez que a lógica é centralizada, os testes podem ser aplicados de maneira mais eficiente e abrangente, garantindo que a funcionalidade seja consistente em todos os usos.
 
-#### Relação com os meus-cheiros
+#### Relação com os maus-cheiros
 O código com duplicidade repete estruturas de loop e operações similares em duas funções diferentes, o que torna o código mais difícil de manter e aumenta a chance de inconsistências. Por exemplo: 
 
 ``` java

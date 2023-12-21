@@ -1,6 +1,5 @@
 package com.fga.tppe.tp1.models;
 
-
 import com.fga.tppe.tp1.TestesFuncionais;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,6 +14,7 @@ import java.util.Arrays;
 import java.util.Collection;
 
 import static org.junit.jupiter.api.Assertions.*;
+
 @Category(TestesFuncionais.class)
 @RunWith(Parameterized.class)
 public class TestesConsultaEstoque {
@@ -25,20 +25,17 @@ public class TestesConsultaEstoque {
 
     private Fornecedor fornecedor;
     private String nome;
-
     private String codigoBarra;
-
     private BigDecimal custo;
     private BigDecimal precoVenda;
-    Estoque estoque;
+    private Estoque estoque;
 
     @Before
-    public void setUp(){
+    public void configurarTeste() {
         estoque = new Estoque();
-
     }
 
-    public TestesConsultaEstoque (String nome, String codigoBarra, double custo, double precoVenda, Integer quantidadeDisponivel ){
+    public TestesConsultaEstoque(String nome, String codigoBarra, double custo, double precoVenda, Integer quantidadeDisponivel) {
         this.nome = nome;
         this.codigoBarra = codigoBarra;
         this.custo = new BigDecimal(custo);
@@ -46,96 +43,67 @@ public class TestesConsultaEstoque {
         this.quantidadeDisponivel = quantidadeDisponivel;
     }
 
-
-
     @Test
-    public void testBuscaProdutoNomeCerto(){
-        Produto produtoNome;
-        produtoNome = new Produto(nome,codigoBarra,custo.doubleValue(),precoVenda.doubleValue(),quantidadeDisponivel);
+    public void testBuscarProdutoPorNomeCorreto() {
+        Produto produtoNome = new Produto(nome, codigoBarra, custo.doubleValue(), precoVenda.doubleValue(), quantidadeDisponivel);
+        estoque.adicionarProduto(produtoNome);
 
-        estoque.addProduto(produtoNome);
+        Produto comparar = estoque.buscarProdutoPorNome("Sasami");
 
-        Produto compara = estoque.buscaProdutoNome("Sasami");
-
-
-        //teste
-
-        assertEquals(compara.getNome(),produtoNome.getNome());
-        assertEquals(compara.getCodigoBarras(),produtoNome.getCodigoBarras());
-        assertEquals(compara.getPrecoCompra(),produtoNome.getPrecoCompra());
-        assertEquals(compara.getPrecoVenda(),produtoNome.getPrecoVenda());
-        assertEquals(compara.getQuantidadeDisponivel(),produtoNome.getQuantidadeDisponivel());
+        assertEquals(comparar.getNome(), produtoNome.getNome());
+        assertEquals(comparar.getCodigoBarras(), produtoNome.getCodigoBarras());
+        assertEquals(comparar.getPrecoCompra(), produtoNome.getPrecoCompra());
+        assertEquals(comparar.getPrecoVenda(), produtoNome.getPrecoVenda());
+        assertEquals(comparar.getQuantidadeDisponivel(), produtoNome.getQuantidadeDisponivel());
     }
 
     @Test
-    public void testBuscaProdutoNomeErrado(){
-        Produto comparaErrado = estoque.buscaProdutoNome("leite");
-        assertNull(comparaErrado);
-
-
-
+    public void testBuscarProdutoPorNomeInexistente() {
+        Produto compararInexistente = estoque.buscarProdutoPorNome("leite");
+        assertNull(compararInexistente);
     }
 
     @Test
-    public void testBuscaProdutoCodigoBarraCerto(){
-        //teste para o caso certo
-        Produto produtoCodigoBarra;
-        produtoCodigoBarra = new Produto(nome,codigoBarra,custo.doubleValue(),precoVenda.doubleValue(),quantidadeDisponivel);
-        estoque.addProduto(produtoCodigoBarra);
-        Produto compara = estoque.buscaProdutoCodigoBarra("2023");;
+    public void testBuscarProdutoPorCodigoDeBarraCorreto() {
+        Produto produtoCodigoBarra = new Produto(nome, codigoBarra, custo.doubleValue(), precoVenda.doubleValue(), quantidadeDisponivel);
+        estoque.adicionarProduto(produtoCodigoBarra);
 
+        Produto comparar = estoque.buscarProdutoPorCodigoDeBarra("2023");
 
-
-        assertEquals(compara.getNome(),produtoCodigoBarra.getNome());
-        assertEquals(compara.getCodigoBarras(),produtoCodigoBarra.getCodigoBarras());
-        assertEquals(compara.getPrecoCompra(),produtoCodigoBarra.getPrecoCompra());
-        assertEquals(compara.getPrecoVenda(),produtoCodigoBarra.getPrecoVenda());
-        assertEquals(compara.getQuantidadeDisponivel(),produtoCodigoBarra.getQuantidadeDisponivel());
-
-
+        assertEquals(comparar.getNome(), produtoCodigoBarra.getNome());
+        assertEquals(comparar.getCodigoBarras(), produtoCodigoBarra.getCodigoBarras());
+        assertEquals(comparar.getPrecoCompra(), produtoCodigoBarra.getPrecoCompra());
+        assertEquals(comparar.getPrecoVenda(), produtoCodigoBarra.getPrecoVenda());
+        assertEquals(comparar.getQuantidadeDisponivel(), produtoCodigoBarra.getQuantidadeDisponivel());
     }
 
-
-
     @Test
-    public void testBuscaProdutoCodigoBarraErrado(){
-
-        //teste para o caso errado
-        Produto comparaErrado = estoque.buscaProdutoCodigoBarra("2000");
-        assertNull(comparaErrado);
+    public void testBuscarProdutoPorCodigoDeBarraInexistente() {
+        Produto compararInexistente = estoque.buscarProdutoPorCodigoDeBarra("2000");
+        assertNull(compararInexistente);
     }
 
-
     @Test
-    public void testListarEstoque(){
-
-        Produto produtoCodigoBarra;
-        produtoCodigoBarra = new Produto(nome,codigoBarra,custo.doubleValue(),precoVenda.doubleValue(),quantidadeDisponivel);
+    public void testListarEstoque() {
+        Produto produtoCodigoBarra = new Produto(nome, codigoBarra, custo.doubleValue(), precoVenda.doubleValue(), quantidadeDisponivel);
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputStream));
 
-        estoque.addProduto(produtoCodigoBarra);
+        estoque.adicionarProduto(produtoCodigoBarra);
 
-        estoque.ListarProdutos();
-        // Captura a saída do console
+        estoque.listarProdutos();
         String mensagemDeSaida = outputStream.toString().trim();
 
         System.out.println(mensagemDeSaida);
         assertEquals("Produto{nome=Sasami,  quantidadeDisponivel=50}", mensagemDeSaida);
     }
 
-
-
     @Parameterized.Parameters
-    public static Collection<Object[]> getParameters() {
+    public static Collection<Object[]> obterParametros() {
         Object[][] parametros = new Object[][] {
-                // quantidadeDisponivel, limiteMinimo, isEstoqueBaixo, mensagemEsperada
-                {"Sasami","2023",17.80,26.99,50}
-
+                {"Sasami", "2023", 17.80, 26.99, 50}
         };
 
         return Arrays.asList(parametros);
     }
-
-
 }
